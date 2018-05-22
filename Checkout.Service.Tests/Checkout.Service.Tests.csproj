@@ -8,8 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="Microsoft.UnitTestFramework.Extensions" Version="2.0.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.1" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Checkout.Service.Interfaces\Checkout.Service.Interfaces.csproj" />
+    <ProjectReference Include="..\Checkout.Service\Checkout.Service.csproj" />
   </ItemGroup>
 
 </Project>

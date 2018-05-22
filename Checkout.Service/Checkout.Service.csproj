@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Checkout.Service.Interfaces\Checkout.Service.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>
