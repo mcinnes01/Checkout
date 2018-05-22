@@ -1,17 +1,25 @@
 using System.Linq;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Checkout.Service.Tests
 {
 	[TestClass]
 	public class BasketTests
 	{
+		private Mock<IProductService> _productService;
+		private IMemoryCache _cache;
 		private IBasketService _basketService;
 
 		[TestInitialize]
 		public void StartUp()
 		{
-			_basketService = new BaseketService();
+			_productService = new Mock<IProductService>();
+
+			_cache = new MemoryCache(new MemoryCacheOptions());
+
+			_basketService = new BaseketService(_cache, _productService.Object);
 		}
 
 		[TestMethod]
