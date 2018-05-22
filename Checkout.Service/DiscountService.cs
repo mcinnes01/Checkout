@@ -1,29 +1,37 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Checkout.Service.Models;
+using Microsoft.Extensions.Options;
 
 namespace Checkout.Service
 {
 	public class DiscountService : IDiscountService
 	{
+		private readonly IOptions<List<QuantityDiscount>> _discounts;
+
+		public DiscountService(IOptions<List<QuantityDiscount>> discounts)
+		{
+			_discounts = discounts;
+		}
+
 		public IOrderedEnumerable<QuantityDiscount> GetDiscounts()
 		{
-			throw new System.NotImplementedException();
+			return _discounts.Value.OrderBy(o => o.Product).ThenBy(o => o.Price);
 		}
 
 		public IOrderedEnumerable<QuantityDiscount> GetDiscountsByProduct(string product)
 		{
-			throw new System.NotImplementedException();
+			return _discounts.Value.Where(d => d.Product == product).OrderBy(o => o.Price);
 		}
 
 		public IOrderedEnumerable<QuantityDiscount> GetEligibleDiscounts(string product, int quantity)
 		{
-			throw new System.NotImplementedException();
+			return _discounts.Value.Where(d => d.Product == product && d.Quantity <= quantity).OrderBy(o => o.Price);
 		}
 
 		public QuantityDiscount GetDiscountByProductQuantity(string product, int quantity)
 		{
-			throw new System.NotImplementedException();
+			return _discounts.Value.FirstOrDefault(d => d.Product == product && d.Quantity == quantity);
 		}
 	}
 }

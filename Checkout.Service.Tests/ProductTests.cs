@@ -1,6 +1,5 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestPlatform.Common.ExtensionFramework.Utilities;
 
 namespace Checkout.Service.Tests
 {
