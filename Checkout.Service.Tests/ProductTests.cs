@@ -1,17 +1,32 @@
+using System.Collections.Generic;
 using System.Linq;
+using Checkout.Service.Models;
+using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Checkout.Service.Tests
 {
 	[TestClass]
 	public class ProductTests
 	{
+		private Mock<IOptions<List<Product>>> _product;
 		private IProductService _productService;
 
 		[TestInitialize]
 		public void StartUp()
 		{
-			_productService = new ProductService();
+			_product = new Mock<IOptions<List<Product>>>();
+
+			_product.Setup(p => p.Value).Returns(new List<Product>
+			{
+				new Product {Name = "Apple", UnitPrice = 50},
+				new Product {Name = "Biscuits", UnitPrice = 30},
+				new Product {Name = "Coffee", UnitPrice = 180},
+				new Product {Name = "Tissues", UnitPrice = 99}
+			});
+
+			_productService = new ProductService(_product.Object);
 		}
 
 		[TestMethod]
