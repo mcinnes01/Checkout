@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Checkout.Service.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,7 +19,7 @@ namespace Checkout.Service.Tests
 		{
 			_productService = new Mock<IProductService>();
 			_productService.Setup(s => s.GetProductByName(It.IsAny<string>()))
-				.Returns(new Product { Name = "Apple", UnitPrice = 50 });
+				.ReturnsAsync(new Product { Name = "Apple", UnitPrice = 50 });
 
 			_cache = new MemoryCache(new MemoryCacheOptions());
 
@@ -26,62 +27,62 @@ namespace Checkout.Service.Tests
 		}
 
 		[TestMethod]
-		public void AddItemToBasketReturnsAppleFirst()
+		public async Task AddItemToBasketReturnsAppleFirst()
 		{
 			// Setup test
 			_cache.Remove("1234");
-			_basketService.AddItemToBasket("Apple", 7);
+			await _basketService.AddItemToBasket("Apple", 7);
 
-			var result = _basketService.GetBasketContents();
+			var result = await _basketService.GetBasketContents();
 			Assert.IsTrue(result.Any(), "No items were returned");
 			Assert.AreEqual(7, result.FirstOrDefault()?.Quantity, "There should initially be 7 items in the basket");
 			Assert.AreEqual("Apple", result.FirstOrDefault()?.Product?.Name, "Apple was not the first product returned");
 		}
 
 		[TestMethod]
-		public void EmptyBasketShouldReturnNoItems()
+		public async Task EmptyBasketShouldReturnNoItems()
 		{
 			// Setup test
 			_cache.Remove("1234");
-			_basketService.AddItemToBasket("Apple", 7);
+			await _basketService.AddItemToBasket("Apple", 7);
 
-			_basketService.EmptyBasket();
-			var result = _basketService.GetBasketContents();
+			await _basketService.EmptyBasket();
+			var result = await _basketService.GetBasketContents();
 
 			Assert.IsTrue(!result.Any(), "Items were returned when they shouldn't have been");
 		}
 
 		[TestMethod]
-		public void RemoveItemFromBasketShouldLeaveFiveApples()
+		public async Task RemoveItemFromBasketShouldLeaveFiveApples()
 		{
 			// Setup test
 			_cache.Remove("1234");
-			_basketService.AddItemToBasket("Apple", 7);
+			await _basketService.AddItemToBasket("Apple", 7);
 
-			var result = _basketService.GetBasketContents();
+			var result = await _basketService.GetBasketContents();
 			Assert.AreEqual(7, result.FirstOrDefault()?.Quantity, "There should initially be 7 items in the basket");
 
-			_basketService.RemoveItemFromBasket("Apple", 2);
+			await _basketService.RemoveItemFromBasket("Apple", 2);
 
-			result = _basketService.GetBasketContents();
+			result = await _basketService.GetBasketContents();
 			Assert.IsTrue(result.Any(), "No products were returned");
 			Assert.AreEqual(5, result.First().Quantity, "Incorrect number of items in the basket, expected 5");
 		}
 
 		[TestMethod]
-		public void EmptyBasketShouldLeaveNotItemsInBasket()
+		public async Task EmptyBasketShouldLeaveNotItemsInBasket()
 		{
 			// Setup test
 			_cache.Remove("1234");
-			_basketService.AddItemToBasket("Apple", 7);
+			await _basketService.AddItemToBasket("Apple", 7);
 
-			var result = _basketService.GetBasketContents();
+			var result = await _basketService.GetBasketContents();
 			Assert.AreEqual(7, result.FirstOrDefault()?.Quantity, "There should initially be 7 items in the basket");
 
 			// Now empty the basket
-			 _basketService.EmptyBasket();
+			 await _basketService.EmptyBasket();
 
-			result = _basketService.GetBasketContents();
+			result = await _basketService.GetBasketContents();
 			Assert.IsFalse(result.Any(), "There are unexpected items in the basket");
 		}
 	}

@@ -1,6 +1,6 @@
 ﻿namespace Checkout.Service.Models
 {
-	public class QuantityDiscount : IQuantityDiscount
+	public class QuantityDiscount
 	{
 		public string Name { get; set; }
 		public string Product { get; set; }

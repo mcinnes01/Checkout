@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Checkout.Service;
 using Checkout.Service.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,34 +19,34 @@ namespace Checkout.Controllers
 
 		// GET api/basket
 		[HttpGet]
-		public IList<BasketItem> GetBasketContents()
+		public async Task<IList<BasketItem>> GetBasketContents()
 		{
-			return _basketService.GetBasketContents();
+			return await _basketService.GetBasketContents();
 		}
 
 		// PUT api/basket/Apple/3
 		[HttpPut("{product}/{quantity}")]
-		public OkResult AddItemToBasket(string product, int quantity)
+		public async Task<OkResult> AddItemToBasket(string product, int quantity)
 		{
-			_basketService.AddItemToBasket(product, quantity);
+			await _basketService.AddItemToBasket(product, quantity);
 
 			return Ok();
 		}
 
 		// DELETE api/basket/Apple/3
 		[HttpDelete("{product}/{quantity}")]
-		public OkResult RemoveItemFromBasket(string product, int quantity)
+		public async Task<OkResult> RemoveItemFromBasket(string product, int quantity)
 		{
-			_basketService.RemoveItemFromBasket(product, quantity);
+			await _basketService.RemoveItemFromBasket(product, quantity);
 
 			return Ok();
 		}
 
 		// DELETE api/basket/empty
 		[HttpDelete("empty")]
-		public OkResult EmptyBasket()
+		public async Task<OkResult> EmptyBasket()
 		{
-			_basketService.EmptyBasket();
+			await _basketService.EmptyBasket();
 
 			return Ok();
 		}

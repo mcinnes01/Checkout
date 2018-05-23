@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Checkout.Service.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,33 +29,33 @@ namespace Checkout.Service.Tests
 		}
 
 		[TestMethod]
-		public void GetDiscountsReturnsAtLeastOneDiscount()
+		public async Task GetDiscountsReturnsAtLeastOneDiscount()
 		{
-			var result = _discountService.GetDiscounts();
+			var result = await _discountService.GetDiscounts();
 
 			Assert.IsTrue(result.Any(), "No discounts were returned");
 		}
 
 		[TestMethod]
-		public void GetDiscountsByProductReturnsAtLeastOneDiscount()
+		public async Task GetDiscountsByProductReturnsAtLeastOneDiscount()
 		{
-			var result = _discountService.GetDiscountsByProduct("Apple");
+			var result = await _discountService.GetDiscountsByProduct("Apple");
 
 			Assert.IsTrue(result.Any(), "No discounts for apple were returned");
 		}
 
 		[TestMethod]
-		public void GetDiscountByProductQuantityReturnsTheFirstDiscountThatMatches()
+		public async Task GetDiscountByProductQuantityReturnsTheFirstDiscountThatMatches()
 		{
-			var result = _discountService.GetDiscountByProductQuantity("Apple", 3);
+			var result = await _discountService.GetDiscountByProductQuantity("Apple", 3);
 
 			Assert.IsNotNull(result, "No discounts were returned");
 		}
 
 		[TestMethod]
-		public void GetProductsByPriceReturnsBiscuitPriceFirst()
+		public async Task GetProductsByPriceReturnsBiscuitPriceFirst()
 		{
-			var result = _discountService.GetEligibleDiscounts("Apple", 9);
+			var result = await _discountService.GetEligibleDiscounts("Apple", 9);
 
 			Assert.IsNotNull(result, "No eligible discounts were returned");
 		}

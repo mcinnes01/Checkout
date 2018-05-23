@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Checkout.Service.Models;
 using Microsoft.Extensions.Options;
 
@@ -14,34 +15,42 @@ namespace Checkout.Service
 			_discounts = discounts;
 		}
 
-		public IList<QuantityDiscount> GetDiscounts()
+		public async Task<IList<QuantityDiscount>> GetDiscounts()
 		{
-			return _discounts.Value
+			var discounts = _discounts.Value
 				.OrderBy(o => o.Product)
 				.ThenBy(o => o.Price)
 				.ToList();
+
+			return await Task.FromResult(discounts);
 		}
 
-		public IList<QuantityDiscount> GetDiscountsByProduct(string product)
+		public async Task<IList<QuantityDiscount>> GetDiscountsByProduct(string product)
 		{
-			return _discounts.Value
+			var discounts = _discounts.Value
 				.Where(d => d.Product == product)
 				.OrderBy(o => o.Price)
 				.ToList();
+
+			return await Task.FromResult(discounts);
 		}
 
-		public IList<QuantityDiscount> GetEligibleDiscounts(string product, int quantity)
+		public async Task<IList<QuantityDiscount>> GetEligibleDiscounts(string product, int quantity)
 		{
-			return _discounts.Value
+			var discounts = _discounts.Value
 				.Where(d => d.Product == product && d.Quantity <= quantity)
 				.OrderBy(o => o.Price)
 				.ToList();
+
+			return await Task.FromResult(discounts);
 		}
 
-		public QuantityDiscount GetDiscountByProductQuantity(string product, int quantity)
+		public async Task<QuantityDiscount> GetDiscountByProductQuantity(string product, int quantity)
 		{
-			return _discounts.Value
+			var discount = _discounts.Value
 				.FirstOrDefault(d => d.Product == product && d.Quantity == quantity);
+
+			return await Task.FromResult(discount);
 		}
 	}
 }

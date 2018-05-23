@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Checkout.Service;
 using Checkout.Service.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,24 +19,24 @@ namespace Checkout.Controllers
 
 		// GET api/product
 		[HttpGet]
-		public IEnumerable<Product> GetAlphabetically()
+		public async Task<IEnumerable<Product>> GetAlphabetically()
 		{
-			return _productService.GetProductsAlphabetically();
+			return await _productService.GetProductsAlphabetically();
 		}
 
 		// GET api/product/price
 		[HttpGet]
 		[Route("price")]
-		public IEnumerable<Product> GetByPrice()
+		public async Task<IEnumerable<Product>> GetByPrice()
 		{
-			return _productService.GetProductsByPrice();
+			return await _productService.GetProductsByPrice();
 		}
 
 		// GET api/product/apple
 		[HttpGet("{product}")]
-		public Product Get(string product)
+		public async Task<Product> Get(string product)
 		{
-			return _productService.GetProductByName(product);
+			return await _productService.GetProductByName(product);
 		}
 	}
 }

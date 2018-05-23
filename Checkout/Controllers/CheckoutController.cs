@@ -1,4 +1,5 @@
-﻿using Checkout.Service;
+﻿using System.Threading.Tasks;
+using Checkout.Service;
 using Checkout.Service.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,9 @@ namespace Checkout.Controllers
 
 		// Post api/checkout
 		[HttpPost]
-		public CheckoutBasket Checkout()
+		public async Task<CheckoutBasket> Checkout()
 		{
-			return _checkoutService.Checkout();
+			return await _checkoutService.Checkout();
 		}
 	}
 }

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout", "Checkout\Checkout.csproj", "{C2136479-047A-4365-B44B-323ECED8BEE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout", "Checkout\Checkout.csproj", "{C2136479-047A-4365-B44B-323ECED8BEE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Service", "Checkout.Service\Checkout.Service.csproj", "{147A4E93-DE36-4671-B567-5730B8EC43DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Service", "Checkout.Service\Checkout.Service.csproj", "{147A4E93-DE36-4671-B567-5730B8EC43DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Service.Interfaces", "Checkout.Service.Interfaces\Checkout.Service.Interfaces.csproj", "{21D13A51-7A86-4763-8A23-EA50B7DE7AF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Service.Interfaces", "Checkout.Service.Interfaces\Checkout.Service.Interfaces.csproj", "{21D13A51-7A86-4763-8A23-EA50B7DE7AF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Service.Tests", "Checkout.Service.Tests\Checkout.Service.Tests.csproj", "{A31CAB19-4F3B-4533-AEB0-2A2A68CCDA68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Service.Tests", "Checkout.Service.Tests\Checkout.Service.Tests.csproj", "{A31CAB19-4F3B-4533-AEB0-2A2A68CCDA68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Client", "Checkout.Client\Checkout.Client.csproj", "{268BC99A-4A1C-4738-BDB8-3E60E48E73AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Client", "Checkout.Client\Checkout.Client.csproj", "{91C2D6EA-20AA-4E95-9DFB-5D5350C3FD76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{A31CAB19-4F3B-4533-AEB0-2A2A68CCDA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A31CAB19-4F3B-4533-AEB0-2A2A68CCDA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A31CAB19-4F3B-4533-AEB0-2A2A68CCDA68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{268BC99A-4A1C-4738-BDB8-3E60E48E73AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{268BC99A-4A1C-4738-BDB8-3E60E48E73AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{268BC99A-4A1C-4738-BDB8-3E60E48E73AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{268BC99A-4A1C-4738-BDB8-3E60E48E73AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91C2D6EA-20AA-4E95-9DFB-5D5350C3FD76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91C2D6EA-20AA-4E95-9DFB-5D5350C3FD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91C2D6EA-20AA-4E95-9DFB-5D5350C3FD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91C2D6EA-20AA-4E95-9DFB-5D5350C3FD76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

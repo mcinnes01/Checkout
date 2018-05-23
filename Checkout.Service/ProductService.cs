@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Checkout.Service.Models;
 using Microsoft.Extensions.Options;
 
@@ -14,22 +15,25 @@ namespace Checkout.Service
 			_products = products;
 		}
 
-		public IList<Product> GetProductsAlphabetically()
+		public async Task<IList<Product>> GetProductsAlphabetically()
 		{
 			// Orders the products by Name ascending
-			return _products.Value.OrderBy(p => p.Name).ToList();
+			var products = _products.Value.OrderBy(p => p.Name).ToList();
+			return await Task.FromResult(products);
 		}
 
-		public IList<Product> GetProductsByPrice()
+		public async Task<IList<Product>> GetProductsByPrice()
 		{
 			// Orders the products by UnitPrice ascending
-			return _products.Value.OrderBy(p => p.UnitPrice).ToList();
+			var products = _products.Value.OrderBy(p => p.UnitPrice).ToList();
+			return await Task.FromResult(products);
 		}
 
-		public Product GetProductByName(string name)
+		public async Task<Product> GetProductByName(string name)
 		{
 			// Returns a product by name
-			return _products.Value.SingleOrDefault(p => p.Name == name);
+			var product = _products.Value.SingleOrDefault(p => p.Name == name);
+			return await Task.FromResult(product);
 		}
 	}
 }

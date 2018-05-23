@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Checkout.Client": {
+      "commandName": "Project"
+    }
+  }
+}

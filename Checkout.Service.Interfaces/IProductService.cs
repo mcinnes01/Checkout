@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Checkout.Service.Models;
 
 namespace Checkout.Service
 {
 	public interface IProductService
 	{
-		IList<Product> GetProductsAlphabetically();
+		Task<IList<Product>> GetProductsAlphabetically();
 
-		IList<Product> GetProductsByPrice();
+		Task<IList<Product>> GetProductsByPrice();
 
-		Product GetProductByName(string name);
+		Task<Product> GetProductByName(string name);
 	}
 }

@@ -1,9 +1,10 @@
-﻿using Checkout.Service.Models;
+﻿using System.Threading.Tasks;
+using Checkout.Service.Models;
 
 namespace Checkout.Service
 {
 	public interface ICheckoutService
 	{
-		CheckoutBasket Checkout();
+		Task<CheckoutBasket> Checkout();
 	}
 }

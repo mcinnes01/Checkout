@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Checkout.Service.Models;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -17,10 +18,10 @@ namespace Checkout.Service
 			_productService = productService;
 		}
 
-		public void AddItemToBasket(string product, int quantity)
+		public async Task AddItemToBasket(string product, int quantity)
 		{
 			// Check the product exists
-			var item = _productService.GetProductByName(product);
+			var item = await _productService.GetProductByName(product);
 
 			if (item == null)
 				return;
@@ -55,10 +56,10 @@ namespace Checkout.Service
 				.SetSlidingExpiration(TimeSpan.FromMinutes(5)));
 		}
 
-		public void RemoveItemFromBasket(string product, int quantity)
+		public async Task RemoveItemFromBasket(string product, int quantity)
 		{
 			// Check the item exists
-			var item = _productService.GetProductByName(product);
+			var item = await _productService.GetProductByName(product);
 
 			if (item == null)
 				return;
@@ -96,12 +97,13 @@ namespace Checkout.Service
 				.SetSlidingExpiration(TimeSpan.FromMinutes(5)));
 		}
 
-		public void EmptyBasket()
+		public async Task EmptyBasket()
 		{
 			_cache.Remove("1234");
+			await Task.CompletedTask;
 		}
 
-		public IList<BasketItem> GetBasketContents()
+		public async Task<IList<BasketItem>> GetBasketContents()
 		{
 			if (!_cache.TryGetValue("1234", out List<BasketItem> items))
 				return new List<BasketItem>();
@@ -113,7 +115,7 @@ namespace Checkout.Service
 					Quantity = i1.Quantity + i2.Quantity
 				}));
 
-			return aggregate.ToList();
+			return await Task.FromResult(aggregate.ToList());
 		}
 	}
 }

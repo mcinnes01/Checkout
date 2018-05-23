@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using Checkout.Service.Models;
 
 namespace Checkout.Service
 {
 	public interface IDiscountService
 	{
-		IList<QuantityDiscount> GetDiscounts();
+		Task<IList<QuantityDiscount>> GetDiscounts();
 
-		IList<QuantityDiscount> GetDiscountsByProduct(string product);
+		Task<IList<QuantityDiscount>> GetDiscountsByProduct(string product);
 
-		IList<QuantityDiscount> GetEligibleDiscounts(string product, int quantity);
+		Task<IList<QuantityDiscount>> GetEligibleDiscounts(string product, int quantity);
 
-		QuantityDiscount GetDiscountByProductQuantity(string product, int quantity);
+		Task<QuantityDiscount> GetDiscountByProductQuantity(string product, int quantity);
 	}
 }
