@@ -55,6 +55,9 @@ namespace Checkout.Service
 
 			checkoutBasket.Total = checkoutBasket.Items.Sum(t => t.Price);
 
+			// Clean up basket
+			_basketService.EmptyBasket();
+
 			return checkoutBasket;
 		}
 	}
