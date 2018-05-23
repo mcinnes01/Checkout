@@ -14,24 +14,34 @@ namespace Checkout.Service
 			_discounts = discounts;
 		}
 
-		public IOrderedEnumerable<QuantityDiscount> GetDiscounts()
+		public IList<QuantityDiscount> GetDiscounts()
 		{
-			return _discounts.Value.OrderBy(o => o.Product).ThenBy(o => o.Price);
+			return _discounts.Value
+				.OrderBy(o => o.Product)
+				.ThenBy(o => o.Price)
+				.ToList();
 		}
 
-		public IOrderedEnumerable<QuantityDiscount> GetDiscountsByProduct(string product)
+		public IList<QuantityDiscount> GetDiscountsByProduct(string product)
 		{
-			return _discounts.Value.Where(d => d.Product == product).OrderBy(o => o.Price);
+			return _discounts.Value
+				.Where(d => d.Product == product)
+				.OrderBy(o => o.Price)
+				.ToList();
 		}
 
-		public IOrderedEnumerable<QuantityDiscount> GetEligibleDiscounts(string product, int quantity)
+		public IList<QuantityDiscount> GetEligibleDiscounts(string product, int quantity)
 		{
-			return _discounts.Value.Where(d => d.Product == product && d.Quantity <= quantity).OrderBy(o => o.Price);
+			return _discounts.Value
+				.Where(d => d.Product == product && d.Quantity <= quantity)
+				.OrderBy(o => o.Price)
+				.ToList();
 		}
 
 		public QuantityDiscount GetDiscountByProductQuantity(string product, int quantity)
 		{
-			return _discounts.Value.FirstOrDefault(d => d.Product == product && d.Quantity == quantity);
+			return _discounts.Value
+				.FirstOrDefault(d => d.Product == product && d.Quantity == quantity);
 		}
 	}
 }
