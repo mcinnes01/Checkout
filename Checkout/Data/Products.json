@@ -1,0 +1,20 @@
+{
+	"Products": [
+		{
+			"Name": "Apple",
+			"UnitPrice": 50
+		},
+		{
+			"Name": "Biscuits",
+			"UnitPrice": 30
+		},
+		{
+			"Name": "Coffee",
+			"UnitPrice": 180
+		},
+		{
+			"Name": "Tissues",
+			"UnitPrice": 99
+		}
+	]
+}

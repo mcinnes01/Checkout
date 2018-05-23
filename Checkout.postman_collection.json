@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "1dd2ab74-3a2d-4ba3-9110-3760b4aaa68d",
+		"name": "Checkout",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/product/Apple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"product",
+						"Apple"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products Alphabetically",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products Price",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/product/price",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"product",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discounts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/discount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"discount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discounts Product",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/discount/Apple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"discount",
+						"Apple"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discounts Product Quantity",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/discount/Apple/quantity/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"discount",
+						"Apple",
+						"quantity",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Discounts Product Eligible",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/discount/Apple/eligible/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"discount",
+						"Apple",
+						"eligible",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basket",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/basket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"basket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basket Add",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/basket/Apple/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"basket",
+						"Apple",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basket Remove",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/basket/Apple/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"basket",
+						"Apple",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basket Empty",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/basket/empty",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"basket",
+						"empty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Checkout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:58460/api/checkout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58460",
+					"path": [
+						"api",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

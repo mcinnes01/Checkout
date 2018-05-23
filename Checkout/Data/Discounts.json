@@ -1,0 +1,16 @@
+{
+	"QuantityDiscounts": [
+		{
+			"Name": "Apple 3 for £1.30",
+			"Product": "Apple",
+			"Quantity": 3,
+			"Price": 130
+		},
+		{
+			"Name": "Biscuits 2 for 45p",
+			"Product": "Biscuits",
+			"Quantity": 2,
+			"Price": 45
+		}
+	]
+}
