@@ -16,16 +16,19 @@ namespace Checkout.Service
 
 		public IList<Product> GetProductsAlphabetically()
 		{
+			// Orders the products by Name ascending
 			return _products.Value.OrderBy(p => p.Name).ToList();
 		}
 
 		public IList<Product> GetProductsByPrice()
 		{
+			// Orders the products by UnitPrice ascending
 			return _products.Value.OrderBy(p => p.UnitPrice).ToList();
 		}
 
 		public Product GetProductByName(string name)
 		{
+			// Returns a product by name
 			return _products.Value.SingleOrDefault(p => p.Name == name);
 		}
 	}
