@@ -1,22 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Checkout.Service.Models;
 using Microsoft.Extensions.Options;
 
 namespace Checkout.Service
 {
 	public class DiscountService : IDiscountService
 	{
-		private readonly IOptions<List<IDiscount>> _discounts;
+		private readonly List<IDiscount> _discounts;
 
-		public DiscountService(IOptions<List<IDiscount>> discounts)
+		public DiscountService(List<IDiscount> discounts)
 		{
 			_discounts = discounts;
 		}
 
 		public async Task<IList<IDiscount>> GetDiscounts()
 		{
-			var discounts = _discounts.Value
+			var discounts = _discounts
 				.OrderBy(o => o.Product)
 				.ToList();
 
@@ -25,7 +26,7 @@ namespace Checkout.Service
 
 		public async Task<IList<IDiscount>> GetDiscountsByProduct(string product)
 		{
-			var discounts = _discounts.Value
+			var discounts = _discounts
 				.Where(d => d.Product == product)
 				.ToList();
 

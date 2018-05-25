@@ -1,16 +1,24 @@
 {
 	"Discounts": [
 		{
-			"Name": "Apple 3 for £1.30",
+			"Type": "QuantityDiscount",
+			"Name": "Apple 3 for &pound;1.30",
 			"Product": "Apple",
 			"Quantity": 3,
 			"Price": 130
 		},
 		{
+			"Type": "QuantityDiscount",
 			"Name": "Biscuits 2 for 45p",
 			"Product": "Biscuits",
 			"Quantity": 2,
 			"Price": 45
+		},
+		{
+			"Type": "PercentageDiscount",
+			"Name": "50% off Coffee",
+			"Product": "Coffee",
+			"Percentage": 50
 		}
 	]
 }

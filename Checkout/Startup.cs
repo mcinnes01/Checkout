@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Checkout.Service;
 using Checkout.Service.Converters;
 using Checkout.Service.Models;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 
 namespace Checkout
@@ -17,7 +19,6 @@ namespace Checkout
 		{
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(env.ContentRootPath)
-				.AddJsonFile("Data/Discounts.json", optional: false, reloadOnChange: true)
 				.AddJsonFile("Data/Products.json", optional: false, reloadOnChange: true)
 				.AddEnvironmentVariables();
 
@@ -30,7 +31,6 @@ namespace Checkout
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddOptions();
-			services.Configure<List<IDiscount>>(options => Configuration.GetSection("Discounts").Bind(options));
 			services.Configure<List<Product>>(options => Configuration.GetSection("Products").Bind(options));
 
 			services.AddMemoryCache();
@@ -44,11 +44,11 @@ namespace Checkout
 					{
 						ContractResolver = new CamelCasePropertyNamesContractResolver(),
 						Formatting = Formatting.Indented,
-						NullValueHandling = NullValueHandling.Ignore,
-						Converters = new List<JsonConverter> { new DiscountConverter() }
+						NullValueHandling = NullValueHandling.Ignore
 					};
 				});
 
+			ConfigureJsonDiscounts(services);
 			services.AddSingleton<IDiscountService, DiscountService>();
 			services.AddSingleton<IProductService, ProductService>();
 			services.AddSingleton<IBasketService, BaseketService>();
@@ -65,8 +65,16 @@ namespace Checkout
 
 			app.UseMvc()
 				.UseDefaultFiles()
-				.UseStaticFiles()
-				.UseJsonConverter();
+				.UseStaticFiles();
+		}
+
+		private void ConfigureJsonDiscounts(IServiceCollection services)
+		{
+			var discountJson = JObject.Parse(File.ReadAllText("Data/Discounts.json"))["Discounts"];
+			var discounts = JsonConvert.DeserializeObject<List<IDiscount>>(discountJson.ToString(),
+				new JsonSerializerSettings { Converters = new List<JsonConverter> { new DiscountConverter()}});
+
+			services.AddSingleton(discounts);
 		}
 	}
 }
