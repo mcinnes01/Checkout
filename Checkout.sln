@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Service.Interfaces
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Service.Tests", "Checkout.Service.Tests\Checkout.Service.Tests.csproj", "{A31CAB19-4F3B-4533-AEB0-2A2A68CCDA68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Client", "Checkout.Client\Checkout.Client.csproj", "{91C2D6EA-20AA-4E95-9DFB-5D5350C3FD76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Client", "Checkout.Client\Checkout.Client.csproj", "{91C2D6EA-20AA-4E95-9DFB-5D5350C3FD76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

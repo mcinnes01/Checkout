@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Checkout.Service;
+using Checkout.Service.Converters;
 using Checkout.Service.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,7 @@ namespace Checkout
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddOptions();
-			services.Configure<List<QuantityDiscount>>(options => Configuration.GetSection("QuantityDiscounts").Bind(options));
+			services.Configure<List<IDiscount>>(options => Configuration.GetSection("Discounts").Bind(options));
 			services.Configure<List<Product>>(options => Configuration.GetSection("Products").Bind(options));
 
 			services.AddMemoryCache();
@@ -43,7 +44,8 @@ namespace Checkout
 					{
 						ContractResolver = new CamelCasePropertyNamesContractResolver(),
 						Formatting = Formatting.Indented,
-						NullValueHandling = NullValueHandling.Ignore
+						NullValueHandling = NullValueHandling.Ignore,
+						Converters = new List<JsonConverter> { new DiscountConverter() }
 					};
 				});
 
@@ -63,7 +65,8 @@ namespace Checkout
 
 			app.UseMvc()
 				.UseDefaultFiles()
-				.UseStaticFiles();
+				.UseStaticFiles()
+				.UseJsonConverter();
 		}
 	}
 }

@@ -44,8 +44,8 @@ namespace Checkout.Service.Tests
 				new BasketItem {Product = new Product {Name = "Biscuits", UnitPrice = 30}, Quantity = 6},
 				new BasketItem {Product = new Product {Name = "Coffee", UnitPrice = 180}, Quantity = 3}
 			});
-			_discountService.Setup(s => s.GetEligibleDiscounts(It.IsAny<string>(), It.IsAny<int>()))
-				.ReturnsAsync(new List<QuantityDiscount>());
+			_discountService.Setup(s => s.GetDiscountsByProduct(It.IsAny<string>()))
+				.ReturnsAsync(new List<IDiscount>());
 
 			var result = await _checkoutService.Checkout();
 
@@ -64,18 +64,18 @@ namespace Checkout.Service.Tests
 				new BasketItem {Product = new Product {Name = "Biscuits", UnitPrice = 30}, Quantity = 6},
 				new BasketItem {Product = new Product {Name = "Coffee", UnitPrice = 180}, Quantity = 3}
 			});
-			_discountService.Setup(s => s.GetEligibleDiscounts("Apple", It.IsInRange(3, 10, Range.Inclusive)))
-				.ReturnsAsync(new List<QuantityDiscount>
+			_discountService.Setup(s => s.GetDiscountsByProduct("Apple"))
+				.ReturnsAsync(new List<IDiscount>
 				{
 					new QuantityDiscount { Name ="Apple 3 for £1.30", Price = 130, Product = "Apple", Quantity = 3}
 				});
-			_discountService.Setup(s => s.GetEligibleDiscounts("Biscuits", It.IsInRange(2, 10, Range.Inclusive)))
-				.ReturnsAsync(new List<QuantityDiscount>
+			_discountService.Setup(s => s.GetDiscountsByProduct("Biscuits"))
+				.ReturnsAsync(new List<IDiscount>
 				{
 					new QuantityDiscount { Name ="Biscuits 2 for 45p", Price = 45, Product = "Biscuits", Quantity = 2}
 				});
-			_discountService.Setup(s => s.GetEligibleDiscounts("Coffee", It.IsAny<int>()))
-				.ReturnsAsync(new List<QuantityDiscount>());
+			_discountService.Setup(s => s.GetDiscountsByProduct("Coffee"))
+				.ReturnsAsync(new List<IDiscount>());
 
 			var result = await _checkoutService.Checkout();
 

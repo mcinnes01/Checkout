@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Service.Models;
 
@@ -26,21 +25,19 @@ namespace Checkout.Service
 
 			foreach (var item in items)
 			{
-				var discounts = (await _discountService.GetEligibleDiscounts(item.Product.Name, item.Quantity)).ToList();
+				var discounts = (await _discountService.GetDiscountsByProduct(item.Product.Name)).ToList();
 				if (discounts.Any())
 				{
-					var discount = discounts.First();
-					var discountQuantity = Math.DivRem(item.Quantity, discount.Quantity, out var remainder);
-
-					checkoutBasket.Items.Add(new CheckoutItem
+					foreach (var discount in discounts)
 					{
-						Product = item.Product.Name,
-						Discount = discount,
-						Quantity = discountQuantity,
-						Price = discountQuantity * discount.Price
-					});
+						if (item.Quantity <= 0)
+							break;
 
-					item.Quantity = remainder;
+						var entry = discount.Process(item, discount);
+						checkoutBasket.Items.Add(entry.Item);
+
+						item.Quantity = entry.Remainder;
+					}
 				}
 
 				if (item.Quantity > 0)
@@ -63,3 +60,4 @@ namespace Checkout.Service
 		}
 	}
 }
+
